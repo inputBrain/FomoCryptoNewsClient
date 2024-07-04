@@ -1,0 +1,33 @@
+﻿@model List<FomoCryptoNews.Client.Models.NewsModel>
+<container>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Cover</th>
+            <th scope="col">Title</th>
+            <th scope="col">Description</th>
+            <th scope="col">Created At</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach (var item in @Model)
+        {
+        <tr>
+            <th scope="row">@item.Id</th>
+            <td>@item.Cover</td>
+            <td>@item.Title</td>
+            <td>@item.Description</td>
+            <td>@item.CreatedAt.ToString("f")</td>
+            <td>
+                <button type="button" class="btn btn-outline-success">Approve</button>
+                <button type="button" class="btn btn-outline-warning">Post on</button>
+                <button type="button" class="btn btn-outline-info">Info</button>
+            </td>
+        </tr>
+        }
+
+        </tbody>
+    </table>
+</container>

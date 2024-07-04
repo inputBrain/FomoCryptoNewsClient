@@ -2,10 +2,10 @@
 
 namespace FomoCryptoNews.Client.ViewComponents;
 
-public class Footer : ViewComponent
+public class Header : ViewComponent
 {
     public IViewComponentResult Invoke()
     {
-        return View("/Pages/Components/FooterView.cshtml");
+        return View("/Pages/Components/HeaderView.cshtml");
     }
 }
