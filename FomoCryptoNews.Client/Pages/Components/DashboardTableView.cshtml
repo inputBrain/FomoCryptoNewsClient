@@ -1,12 +1,8 @@
 ﻿@model List<FomoCryptoNews.Client.Models.NewsModel>
-<br>
-<br>
-<br>
-<br>
-<br>
-<div class="container">
-    <table class="table table-striped" id="newsTable">
-        <thead class="table-dark">
+
+<div class="container mt-5">
+    <table class="table table-hover" id="newsTable">
+        <thead>
         <tr>
             <th>Id</th>
             <th>Cover</th>
@@ -26,75 +22,29 @@
                 <td>@item.Description</td>
                 <td>@item.CreatedAt.ToString("f")</td>
                 <td>
-                    <button type="button" class="btn btn-outline-success">Approve</button>
-                    <button type="button" class="btn btn-outline-warning">Post on</button>
-                    <button type="button" class="btn btn-outline-info">Info</button>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-sm btn-outline-success">Approve</button>
+                        <button type="button" class="btn btn-sm btn-outline-warning">Post on</button>
+                        <button type="button" class="btn btn-sm btn-outline-info">Info</button>
+                    </div>
                 </td>
             </tr>
         }
         </tbody>
     </table>
-    <nav>
-        <ul class="pagination justify-content-center" id="pagination"></ul>
+    <nav aria-label="...">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <span class="page-link">Previous</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item active" aria-current="page">
+                <span class="page-link">2</span>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Next</a>
+            </li>
+        </ul>
     </nav>
-
 </div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const table = document.getElementById('newsTable');
-        const pagination = document.getElementById('pagination');
-        const itemsPerPageSelect = document.getElementById('itemsPerPage');
-        let currentPage = 1;
-        let itemsPerPage = 10;
-
-        function showPage(page) {
-            const rows = table.querySelectorAll('tbody tr');
-            const start = (page - 1) * itemsPerPage;
-            const end = start + itemsPerPage;
-
-            rows.forEach((row, index) => {
-                if (index >= start && index < end) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-
-            updatePagination();
-        }
-
-        function updatePagination() {
-            const rows = table.querySelectorAll('tbody tr');
-            const pageCount = Math.ceil(rows.length / itemsPerPage);
-            pagination.innerHTML = '';
-
-            for (let i = 1; i <= pageCount; i++) {
-                const li = document.createElement('li');
-                li.classList.add('page-item');
-                if (i === currentPage) li.classList.add('active');
-
-                const a = document.createElement('a');
-                a.classList.add('page-link');
-                a.href = '#';
-                a.textContent = i;
-                a.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    currentPage = i;
-                    showPage(currentPage);
-                });
-
-                li.appendChild(a);
-                pagination.appendChild(li);
-            }
-        }
-
-        itemsPerPageSelect.addEventListener('change', function() {
-            itemsPerPage = parseInt(this.value);
-            currentPage = 1;
-            showPage(currentPage);
-        });
-
-        showPage(currentPage);
-    });
-</script>
