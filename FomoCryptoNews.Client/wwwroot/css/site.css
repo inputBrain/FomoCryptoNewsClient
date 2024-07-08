@@ -68,7 +68,6 @@ body {
   }
 }
 
-/* Новые стили для улучшения эффекта наведения */
 .table tbody tr {
   will-change: transform;
 }
