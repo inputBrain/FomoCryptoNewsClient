@@ -12,6 +12,8 @@ public class NewsModel
     
     public string Cover { get; set; }
     
+    public Status Status { get; set; }
+    
     public DateTime CreatedAt { get; set; }
     
     
@@ -22,8 +24,9 @@ public class NewsModel
             .RuleFor(n => n.Title, f => f.Lorem.Sentence(5, 7))
             .RuleFor(n => n.Description, f => f.Lorem.Paragraphs(1, 3)) 
             .RuleFor(n => n.Cover, f => f.Image.PicsumUrl()) 
+            .RuleFor(n => n.Status, f => f.PickRandom<Status>()) 
             .RuleFor(n => n.CreatedAt, f => f.Date.Between(DateTime.Now.AddMonths(-1), DateTime.Now));
-
+    
         var collection = faker.Generate(30);
         return collection;
     }

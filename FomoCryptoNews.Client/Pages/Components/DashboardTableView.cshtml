@@ -1,4 +1,5 @@
-﻿@model List<FomoCryptoNews.Client.Models.NewsModel>
+﻿@using FomoCryptoNews.Client.Models
+@model List<FomoCryptoNews.Client.Models.NewsModel>
 
 <div class="container mt-5">
     <table class="table table-hover" id="newsTable">
@@ -8,6 +9,7 @@
             <th>Cover</th>
             <th>Title</th>
             <th>Description</th>
+            <th>Status</th>
             <th>Created At</th>
             <th>Actions</th>
         </tr>
@@ -17,9 +19,31 @@
         {
             <tr>
                 <td>@item.Id</td>
-                <td>@item.Cover</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(item.Cover))
+                    {
+                        <img src="@item.Cover" alt="Cover image" style="max-width: 100px; max-height: 100px;"/>
+                    }
+                    else
+                    {
+                        <span>No image</span>
+                    }
+                </td>
                 <td>@item.Title</td>
                 <td>@item.Description</td>
+                <td>
+                        @{
+                            string statusClass = item.Status switch
+                            {
+                                Status.Parsed => "bg-warning text-dark",
+                                Status.Approved => "bg-success text-white",
+                                Status.Declined => "bg-secondary text-white",
+                                Status.Deleted => "bg-danger text-white",
+                                _ => "bg-light text-dark"
+                            };
+                        }
+                        <span class="badge @statusClass">@item.Status</span>
+                    </td>
                 <td>@item.CreatedAt.ToString("f")</td>
                 <td>
                     <div class="btn-group" role="group">
