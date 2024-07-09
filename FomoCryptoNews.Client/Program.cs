@@ -1,10 +1,15 @@
+using FomoCryptoNews.Client.Services;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-var mvcBuilder = builder.Services.AddControllersWithViews();
-mvcBuilder.AddRazorRuntimeCompilation();
+// var mvcBuilder = builder.Services.AddControllersWithViews();
+// mvcBuilder.AddRazorRuntimeCompilation();
+
+builder.Services.AddHttpClient<IBaseSender, BaseSender>();
+builder.Services.AddScoped<INewsService, NewsService>();
 
 var app = builder.Build();
 
