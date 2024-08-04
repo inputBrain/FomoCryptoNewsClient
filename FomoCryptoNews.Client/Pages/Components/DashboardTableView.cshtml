@@ -72,3 +72,31 @@
         </ul>
     </nav>
 </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const approveForms = document.querySelectorAll('.approve-form');
+
+            approveForms.forEach(form => {
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    const newsId = this.querySelector('input[name="newsId"]').value;
+                    const response = await fetch(`/Home/ApproveNews?newsId=${newsId}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        alert('News approved successfully!');
+                        // Optionally update the UI or reload the page
+                        location.reload();
+                    } else {
+                        alert('Error approving news.');
+                    }
+                });
+            });
+        });
+    </script>
