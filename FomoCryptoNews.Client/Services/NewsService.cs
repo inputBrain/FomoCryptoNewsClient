@@ -6,7 +6,7 @@ public class NewsService : INewsService
 {
     private readonly IBaseSender _sender;
 
-    private const string BaseUrl = "http://localhost:5000/api/News";
+    private const string BaseUrl = "http://localhost:6000/api/News";
     
     public NewsService(IBaseSender sender)
     {
