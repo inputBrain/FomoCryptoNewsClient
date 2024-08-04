@@ -21,6 +21,13 @@ public class BaseSender : IBaseSender
         return appData;
     }
 
+
+    public async Task SendAsync(string url)
+    {
+        await _client.GetAsync(url);
+    }
+
+
     private static readonly JsonSerializerOptions JsonSerializerOptions = new()
     {
         PropertyNameCaseInsensitive = true
