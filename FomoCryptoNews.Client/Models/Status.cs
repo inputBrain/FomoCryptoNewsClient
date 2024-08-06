@@ -2,8 +2,8 @@
 
 public enum Status
 {
-    Parsed,
-    Approved,
-    Declined,
-    Deleted
+    Parsed = 1,
+    Approved = 2,
+    Declined = 3,
+    Deleted = 4
 }
