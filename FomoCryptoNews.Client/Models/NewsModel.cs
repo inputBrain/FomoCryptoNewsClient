@@ -14,7 +14,7 @@ public class NewsModel
     
     public Status Status { get; set; }
     
-    public DateTime CreatedAt { get; set; }
+    public int CreatedAt { get; set; }
     
     //
     // public static List<NewsModel> FakerCollection()

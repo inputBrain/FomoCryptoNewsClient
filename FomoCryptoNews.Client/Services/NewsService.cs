@@ -22,8 +22,8 @@ public class NewsService : INewsService
 
     public async Task<List<NewsModel>> ListNews(int skip, int take)
     {
-        var collection =  await _sender.ParseGet<NewsModel[]>($"{BaseUrl}/GetAll?pageIndex={skip}&pageSize={take}");
+        var collection =  await _sender.ParseGet<CryptostateNews>($"{BaseUrl}/ListAllNews?skip={skip}&take={take}");
         
-        return collection.ToList();
+        return collection.News.ToList();
     }
 }
